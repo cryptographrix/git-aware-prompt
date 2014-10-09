@@ -10,7 +10,7 @@
 find_git_branch() {
   # Based on: http://stackoverflow.com/a/13003854/170413
   local branch
-  if [[ "$on_exit_command" =~ ^git || "$on_exit_command" =~ ^cd || "$on_exit_command" =~ ^PROMPT_COMMAND || "$on_exit_cmmand" =~ ^trap ]]; then
+  if [[ "$on_exit_command" =~ ^git || "$on_exit_command" =~ ^cd || "$on_exit_command" =~ ^PROMPT_COMMAND || "$on_exit_command" =~ ^trap ]]; then
     if branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
       if [[ "$branch" == "HEAD" ]]; then
         branch='detached*'
@@ -19,7 +19,6 @@ find_git_branch() {
     else
       git_branch=""
     fi
-    git_branch="($branch)"
   else
     git_branch=""
   fi
