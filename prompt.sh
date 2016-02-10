@@ -16,11 +16,14 @@ find_git_branch() {
         branch='detached*'
       fi
       git_branch=" 🌱  ${branch}"
+      git_branch_ASCII=" B  ${branch}"
     else
       git_branch=""
+      git_branch_ASCII=""
     fi
   else
     git_branch=""
+    git_branch_ASCII=""
   fi
 }
 
@@ -28,8 +31,10 @@ find_git_dirty() {
   local status=$(git status --porcelain 2> /dev/null)
   if [[ "$status" != "" ]]; then
     git_dirty=' 😡 '
+    git_dirty_ASCII=' ! '
   else
     git_dirty=''
+    git_dirty_ASCII=''
   fi
 }
 
