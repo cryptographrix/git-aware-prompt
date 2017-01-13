@@ -10,20 +10,17 @@
 find_git_branch() {
   # Based on: http://stackoverflow.com/a/13003854/170413
   local branch
-  if [[ "$on_exit_command" =~ ^git || "$on_exit_command" =~ ^cd || "$on_exit_command" =~ ^PROMPT_COMMAND || "$on_exit_command" =~ ^trap ]]; then
+  if [[ "$on_exit_command" =~ ^git || "$on_exit_command" =~ ^cd || "$on_exit_command" =~ ^PROMPT_COMMAND || "$on_exit_command" =~ ^trap || "${on_exit_command}" =~ ^$ ]]; then
     if branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
       if [[ "$branch" == "HEAD" ]]; then
         branch='detached*'
       fi
       git_branch=" ${branch}"
-      git_branch_ASCII=" ${branch}"
     else
       git_branch=""
-      git_branch_ASCII=""
     fi
   else
     git_branch=""
-    git_branch_ASCII=""
   fi
 }
 
@@ -31,10 +28,8 @@ find_git_dirty() {
   local status=$(git status --porcelain 2> /dev/null)
   if [[ "$status" != "" ]]; then
     git_dirty=' * '
-    git_dirty_ASCII=' ! '
   else
     git_dirty=''
-    git_dirty_ASCII=''
   fi
 }
 
