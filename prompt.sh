@@ -15,8 +15,8 @@ find_git_branch() {
       if [[ "$branch" == "HEAD" ]]; then
         branch='detached*'
       fi
-      git_branch=" 🌱  ${branch}"
-      git_branch_ASCII=" B  ${branch}"
+      git_branch=" ${branch}"
+      git_branch_ASCII=" ${branch}"
     else
       git_branch=""
       git_branch_ASCII=""
@@ -30,7 +30,7 @@ find_git_branch() {
 find_git_dirty() {
   local status=$(git status --porcelain 2> /dev/null)
   if [[ "$status" != "" ]]; then
-    git_dirty=' 😡 '
+    git_dirty=' * '
     git_dirty_ASCII=' ! '
   else
     git_dirty=''
