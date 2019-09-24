@@ -13,9 +13,9 @@ find_git_branch() {
   if [[ "$on_exit_command" =~ ^git || "$on_exit_command" =~ ^cd || "$on_exit_command" =~ ^PROMPT_COMMAND || "$on_exit_command" =~ ^trap || "${on_exit_command}" =~ ^$ ]]; then
     if branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
       if [[ "$branch" == "HEAD" ]]; then
-        branch=' detached*'
+        branch=':detached*'
       fi
-      git_branch=" ${branch}"
+      git_branch="|${branch}"
     else
       git_branch=""
     fi
